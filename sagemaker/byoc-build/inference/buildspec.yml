@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo start to build docker for sagemaker inference
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image..
+      - cd byoc-build/inference
+      - bash build_and_push.sh byoc-infer-h5
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Docker image pushed

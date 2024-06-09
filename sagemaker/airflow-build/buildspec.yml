@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo now pre_building
+  build:
+    commands:
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - cd airflow-build
+      - tar -zcvf airflow-artifact.tar.gz dags scripts --directory=./ appspec.yml
+      - aws s3 cp airflow-artifact.tar.gz s3://sagemaker-cn-northwest-1-542319707026/airflow-artifact.tar.gz

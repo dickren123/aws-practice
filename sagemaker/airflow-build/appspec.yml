@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /dags
+    destination: /home/ubuntu/airflow/dags
+hooks:
+  ApplicationStart:
+    - location: scripts/start_dag.sh
+      timeout: 120
+      runas: ubuntu
